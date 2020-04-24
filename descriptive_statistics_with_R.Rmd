@@ -1,0 +1,50 @@
+---
+title: "REVIEW & DESCRIPTIVE STATISTICS WITH R"
+---
+
+Goal: We will cover various R commands for descriptive statistics.
+Data: iraq.csv
+
+1.	Exploring the Iraq data.
+(a)	How many records (observations) are in the data set?
+```{r}
+length(iraq$Obs.Number)
+```
+(b)	How many variables are in the data set?
+```{r}
+length(names(iraq))
+```
+2.  For the Age variable in the Iraq data, calculate the
+(a)	Mean: 			_________
+(b)	Median:		__________
+(c)	Standard deviation:	__________
+(d)	Maximum:		__________
+(e)	IQR:			___________
+```{r}
+mean(iraq$Age,na.rm=T)
+```
+```{r}
+median(iraq$Age,na.rm=T)
+```
+```{r}
+sd(iraq$Age,na.rm=T)
+```
+```{r}
+max(iraq$Age,na.rm=T)
+```
+```{r}
+IQR(iraq$Age,na.rm=T)
+```
+
+3.	For the Hometown variable:
+Which hometown had the largest number of casualties in the data?   How many?  (Hint: The sort() function can be useful for ordering the values that come out of the table() function…)  (Houston-34)
+```{r}
+fivenum(sort(table(iraq$Hometown[iraq$Hometown!="Not reported yet"])))
+```
+4.	 Create and attach a frequency histogram and a boxplot of Age only for those with Rank of "Corporal."  Appropriately label the x- and y-axes, and further modify the plots as desired to make them look professional.  Hint: use iraq$Age[iraq$Rank=="Corporal"] to get the needed ages.
+```{r}
+hist(iraq$Age[iraq$Rank=="Corporal"], xlab="Age of Corporal's", ylab="Frequency")
+```
+```{r}
+boxplot(iraq$Age[iraq$Rank=="Corporal"], ylab = "Age of Corporal's", main="Boxplot")
+```
